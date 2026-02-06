@@ -25,7 +25,7 @@
 
 Acesse a versão online: [https://feharo.github.io/MD2PDF](https://feharo.github.io/MD2PDF)
 
-![MD2PDF Screenshot](./assets/screenshot.png)
+![MD2PDF Screenshot](./assets/og-image.png)
 
 ---
 
