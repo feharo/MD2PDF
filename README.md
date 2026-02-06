@@ -46,11 +46,13 @@ Acesse a versão online: [https://feharo.github.io/MD2PDF](https://feharo.github
 ## 📖 Como Usar
 
 ### Online
+
 1. Acesse [https://feharo.github.io/MD2PDF](https://feharo.github.io/MD2PDF)
 2. Cole seu Markdown no editor ou carregue um arquivo
 3. Clique em **"Gerar PDF"** ou pressione `Ctrl/Cmd + P`
 
 ### Localmente
+
 ```bash
 # Clone o repositório
 git clone https://github.com/feharo/MD2PDF.git
@@ -76,6 +78,7 @@ start index.html
 Não é necessário instalação! O MD2PDF é uma aplicação web pura que roda diretamente no navegador.
 
 ### Requisitos
+
 - Navegador moderno (Chrome, Firefox, Safari, Edge)
 - Conexão com internet (para carregar bibliotecas CDN)
 
@@ -118,16 +121,20 @@ MD2PDF/
 ## 🎨 Personalização
 
 ### Alterar cores
+
 Edite `assets/css/base.css`:
+
 ```css
 :root {
-  --primary: #sua-cor;      /* Cor principal */
+  --primary: #sua-cor; /* Cor principal */
   --primary-dark: #sua-cor; /* Cor escura */
 }
 ```
 
 ### Configurar PDF
+
 Edite `assets/js/config.js`:
+
 ```javascript
 pdf: {
   filenamePrefix: "MeuDocumento",
@@ -159,7 +166,8 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 👤 Autor
 
 **Felipe Aquino**
-- 💼 Fundador da [Feharo Tech](https://feharo.tech)
+
+- 💼 Fundador da [Feharo Tech](https://feharo.com.br)
 - 🐙 GitHub: [@feharo](https://github.com/feharo)
 - 💼 LinkedIn: [Felipe Aquino](https://linkedin.com/in/feharo)
 
