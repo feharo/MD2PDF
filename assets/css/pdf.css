@@ -1,0 +1,234 @@
+/* Container usado apenas na exportação */
+.pdf-container {
+  position: fixed;
+  inset: 0;
+  width: 794px;        /* ~A4 em px @96dpi */
+  background: #fff;
+  z-index: 9999;
+  transform: translateX(-200vw); /* fora da tela */
+}
+
+.pdf-content {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  color: inherit;
+}
+
+/* Estilos PDF */
+.pdf-content h1 {
+  color: #1f3a5f;
+  border-bottom: 3px solid #2f80ed;
+  padding-bottom: 8px;
+}
+
+.pdf-content h2 {
+  color: #1f3a5f;
+  border-bottom: 1px solid #ddd;
+}
+
+.pdf-content h3 {
+  font-size: 14pt !important;
+  font-weight: 600 !important;
+  color: #000 !important;
+  margin-top: 20pt !important;
+  margin-bottom: 12pt !important;
+  page-break-after: avoid !important;
+}
+
+.pdf-content p {
+  margin-bottom: 12pt !important;
+  text-align: justify !important;
+}
+
+.pdf-content blockquote {
+  border-left: 3pt solid #000 !important;
+  background-color: #f5f5f5 !important;
+  padding: 12pt 16pt !important;
+  margin: 16pt 0 !important;
+  color: #333 !important;
+  font-style: italic !important;
+  page-break-inside: avoid !important;
+}
+
+.pdf-content table {
+  width: 100%;
+  border-collapse: collapse;
+  page-break-inside: avoid !important;
+}
+
+.pdf-content thead th {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border: 1px solid var(--primary-dark);
+  padding: 10px;
+}
+
+.pdf-content tbody td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.pdf-content ul {
+  list-style: none !important;
+  padding-left: 18pt !important;
+}
+
+.pdf-content ul li::before {
+  content: "•";
+  color: var(--primary);
+  font-weight: 700;
+  margin-right: 8pt;
+}
+
+.pdf-content li {
+  margin-bottom: 6pt !important;
+}
+
+.pdf-content pre {
+  background-color: #2d3748;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  color: #fff;
+}
+
+.pdf-content code:not(pre code) {
+  background-color: #f5f5f5 !important;
+  color: #d00 !important;
+  padding: 1pt 3pt !important;
+  border-radius: 2pt !important;
+  font-family: "Courier New", monospace !important;
+  font-size: 9pt !important;
+}
+
+.pdf-content hr {
+  height: 1pt !important;
+  background-color: #ccc !important;
+  border: none !important;
+  margin: 20pt 0 !important;
+}
+
+.page-break-before { page-break-before: always !important; break-before: page !important; }
+.keep-together { page-break-inside: avoid !important; break-inside: avoid !important; }
+
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  page-break-inside: avoid !important;
+}
+
+/* Numeração reset */
+.pdf-content ol {
+  counter-reset: item !important;
+  list-style: none !important;
+  padding-left: 2em !important;
+  margin: 12pt 0 !important;
+}
+.pdf-content ol li {
+  counter-increment: item !important;
+  position: relative !important;
+  margin-bottom: 0.3em !important;
+}
+.pdf-content ol li::before {
+  content: counter(item) ". " !important;
+  position: absolute !important;
+  left: -2em !important;
+  width: 2em !important;
+  text-align: right !important;
+  color: #666 !important;
+}
+
+/* checkboxes no PDF - Estilo visual único */
+.pdf-content .checkbox-markdown {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 14pt !important;
+  height: 14pt !important;
+  border: 1.5pt solid #555 !important;
+  border-radius: 3pt !important;
+  margin-right: 6pt !important;
+  margin-left: 2pt !important;
+  vertical-align: middle !important;
+  font-weight: 700 !important;
+  flex-shrink: 0 !important;
+}
+
+.pdf-content .checkbox-checked {
+  background-color: #e8f5e9 !important;
+  border-color: #2e7d32 !important;
+  color: #2e7d32 !important;
+}
+
+.pdf-content .checkbox-checked::before {
+  content: "✓" !important;
+  font-size: 10pt !important;
+}
+
+.pdf-content .checkbox-unchecked {
+  background-color: #f5f5f5 !important;
+  border-color: #bbb !important;
+}
+
+/* Ajustes para checkboxes em listas no PDF */
+.pdf-content li:has(.checkbox-markdown) {
+  list-style: none !important;
+  margin-left: -14pt !important;
+}
+
+/* Header/Footer (opcional) */
+.pdf-header {
+  text-align: center;
+  margin-bottom: 30pt;
+  padding-bottom: 15pt;
+  border-bottom: 1pt solid #ccc;
+}
+.pdf-title { font-size: 18pt; font-weight: 700; margin-bottom: 8pt; }
+.pdf-subtitle { font-size: 12pt; color: #666; }
+
+.pdf-footer {
+  margin-top: 18pt;
+  text-align: center;
+  font-size: 8pt;
+  color: #666;
+  border-top: 1pt solid #ccc;
+  padding-top: 8pt;
+}
+
+/* Evita que linhas sejam cortadas no meio (quando possível) */
+.pdf-content p,
+.pdf-content li,
+.pdf-content blockquote,
+.pdf-content pre,
+.pdf-content table,
+.pdf-content thead,
+.pdf-content tbody,
+.pdf-content tr,
+.pdf-content td,
+.pdf-content th {
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+}
+
+/* Evita ficar 1 linha sozinha no fim/início da página */
+.pdf-content p {
+  orphans: 3;
+  widows: 3;
+}
+
+/* Títulos não devem ficar no fim da página sem conteúdo embaixo */
+.pdf-content h1,
+.pdf-content h2,
+.pdf-content h3 {
+  break-after: avoid !important;
+  page-break-after: avoid !important;
+}
+
+/* Se você tiver wrappers para seções, use isso também */
+.avoid-break-inside {
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+}

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>MD2PDF - Conversor de Markdown para PDF</title>
+  <meta name="description" content="Converta arquivos Markdown para PDF de forma rápida e gratuita. Editor com preview em tempo real, suporte a checkboxes, tabelas e código. 100% front-end." />
+  <meta name="keywords" content="markdown, pdf, converter, conversor, editor, markdown para pdf, gerar pdf, exportar markdown" />
+  <meta name="author" content="Felipe Aquino - Feharo Tech" />
+  <meta name="robots" content="index, follow" />
+  
+  <meta property="og:title" content="MD2PDF - Conversor de Markdown para PDF" />
+  <meta property="og:description" content="Converta arquivos Markdown para PDF de forma rápida e gratuita. Editor com preview em tempo real." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://feharo.github.io/MD2PDF" />
+  <meta property="og:image" content="https://feharo.github.io/MD2PDF/assets/og-image.png" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MD2PDF - Conversor de Markdown para PDF" />
+  <meta name="twitter:description" content="Converta arquivos Markdown para PDF de forma rápida e gratuita." />
+  <meta name="twitter:image" content="https://feharo.github.io/MD2PDF/assets/og-image.png" />
+  
+  <link rel="canonical" href="https://feharo.github.io/MD2PDF" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='15' fill='%232f80ed'/%3E%3Ctext x='50' y='45' font-family='Arial, sans-serif' font-size='28' font-weight='bold' fill='white' text-anchor='middle'%3EMD%3C/text%3E%3Ctext x='50' y='75' font-family='Arial, sans-serif' font-size='20' fill='white' text-anchor='middle'%3EPDF%3C/text%3E%3C/svg%3E" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/css/base.css" />
+  <link rel="stylesheet" href="./assets/css/layout.css" />
+  <link rel="stylesheet" href="./assets/css/markdown-preview.css" />
+  <link rel="stylesheet" href="./assets/css/pdf.css" />
+  <link rel="stylesheet" href="./assets/css/animations.css" />
+
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script defer src="./assets/js/config.js"></script>
+  <script defer src="./assets/js/utils.js"></script>
+  <script defer src="./assets/js/markdown.js"></script>
+  <script defer src="./assets/js/pdf.js"></script>
+  <script defer src="./assets/js/app.js"></script>
+</head>
+
+<body>
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loading-message" id="loading-message">Processando...</div>
+    <div class="loading-submessage" id="loading-submessage"></div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <nav class="navbar navbar-light bg-light border-bottom px-3 app-navbar">
+    <span class="navbar-brand mb-0 h1">MD2PDF</span>
+
+    <div class="d-flex gap-2 align-items-center">
+      <small class="text-muted d-none d-md-inline" id="status"></small>
+      <input type="file" id="file-input" accept=".md,.markdown,.txt" hidden>
+      <button class="btn btn-outline-secondary" id="btn-upload" type="button" title="Carregar arquivo .md">
+        📁 Carregar MD
+      </button>
+      <button class="btn btn-primary" id="btn-generate" type="button">
+        📄 Gerar PDF
+      </button>
+    </div>
+  </nav>
+
+  <div id="pdf-root" class="pdf-container" aria-hidden="true">
+    <div class="pdf-content"></div>
+  </div>
+
+  <main class="container-fluid app-main">
+    <div class="row h-100">
+      <section class="col-md-6 app-pane" aria-label="Editor Markdown">
+        <header class="app-pane__header">
+          <h5 class="mb-2">📝 Editor Markdown</h5>
+        </header>
+
+        <textarea
+          id="markdown"
+          class="form-control app-editor"
+          placeholder="# Escreva seu Markdown aqui..."
+          spellcheck="false"
+        ># Markdown to PDF
+
+## Introdução
+Escreva **Markdown** à esquerda  
+e veja o **preview** à direita 🚀
+
+- Simples
+- Rápido
+- 100% front-end
+
+### Tabela de Exemplo
+
+| Item | Quantidade | Preço |
+|------|------------|-------|
+| Maçã | 10 | R$ 5,00 |
+| Banana | 5 | R$ 3,00 |
+| Laranja | 8 | R$ 4,00 |
+
+---
+
+### Código de Exemplo
+```javascript
+function calcularTotal(itens) {
+  return itens.reduce((total, item) => total + item.preco, 0);
+}
+
+const carrinho = [
+  { nome: "Maçã", preco: 5.00 },
+  { nome: "Banana", preco: 3.00 }
+];
+
+console.log("Total: R$", calcularTotal(carrinho));
+```
+
+## Listas
+
+1. Primeiro item
+2. Segundo item
+3. Terceiro item
+
+### Lista não ordenada
+
+* Item A
+* Item B
+  * Subitem B1
+  * Subitem B2
+* Item C
+
+### Lista com Checkboxes
+
+- (x) Tarefa concluída
+- ( ) Tarefa pendente
+- (x) Outra tarefa concluída
+- ( ) Outra tarefa pendente
+
+### Checkboxes em parágrafo
+
+(x) Item marcado inline
+
+( ) Item desmarcado inline
+
+## Texto formatado
+
+Texto em **negrito**, *itálico* e ~~tachado~~.
+
+> Citação: Este é um bloco de citação que pode ser útil para destacar informações importantes.
+        </textarea>
+      </section>
+      
+      <section class="col-md-6 app-pane" aria-label="Preview Markdown">
+        <header class="app-pane__header">
+          <h5 class="mb-2">👁️ Preview</h5>
+        </header>
+
+        <div id="preview" class="app-preview"></div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

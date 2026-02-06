@@ -1,0 +1,33 @@
+* { box-sizing: border-box; }
+
+:root {
+  --app-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+  --app-font-mono: "Monaco", "Menlo", "Ubuntu Mono", Consolas, monospace;
+
+  --border: #e8e8e8;
+  --bg-soft: #f8f9fa;
+  --text: #2c3e50;
+  --text-dark: #1a1a1a;
+  --text-muted: #6c757d;
+
+  --primary: #2f80ed;
+  --primary-light: #56ccf2;
+  --primary-dark: #1a6fc7;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--app-font-sans);
+  color: var(--text);
+}
+
+/* melhor compatibilidade print (usado no html2pdf) */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}

@@ -1,0 +1,198 @@
+/* Headings */
+#preview h1 {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  border-bottom: 3px solid var(--primary);
+  padding-bottom: 15px;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+#preview h2 {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #34495e;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 10px;
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+#preview h3 {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+#preview h4 {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #7f8c8d;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Text */
+#preview p {
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+#preview strong { font-weight: 700; color: #2c3e50; }
+#preview em { font-style: italic; color: #7f8c8d; }
+
+/* Blockquote */
+#preview blockquote {
+  border-left: 4px solid var(--primary);
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+  margin: 20px 0;
+  color: #555;
+  font-style: italic;
+}
+#preview blockquote p { margin: 0; }
+
+/* Lists */
+#preview ul, #preview ol {
+  padding-left: 30px;
+  margin: 15px 0;
+}
+#preview li { margin-bottom: 8px; }
+#preview ul li::marker { color: var(--primary); }
+
+/* Ol com contador custom */
+#preview ol {
+  counter-reset: item;
+  list-style: none;
+  padding-left: 2em;
+}
+#preview ol li {
+  counter-increment: item;
+  position: relative;
+  padding-left: 0.5em;
+}
+#preview ol li::before {
+  content: counter(item) ". ";
+  position: absolute;
+  left: -1.8em;
+  width: 1.8em;
+  text-align: right;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* HR */
+#preview hr {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  border: none;
+  margin: 30px 0;
+}
+
+/* Inline code */
+#preview code:not(pre code) {
+  background-color: #f1f8ff;
+  color: #d73a49;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 85%;
+}
+
+/* Code block */
+#preview pre {
+  background-color: #2d3748;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+}
+#preview pre code {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Table */
+#preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+#preview th {
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 16px;
+  text-align: left;
+  border: 1px solid var(--primary-dark);
+}
+#preview td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+#preview tr:nth-child(even) { background-color: #f8f9fa; }
+#preview tr:hover { background-color: #f1f8ff; }
+
+/* Emoji */
+.emoji-title {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
+/* Checkboxes (inline + list) - Visual moderno com checkbox real */
+.checkbox-markdown {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid;
+  border-radius: 3px;
+  margin: 0 6px;
+  vertical-align: middle;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.checkbox-checked {
+  background-color: #e8f5e9;
+  border-color: #2e7d32;
+  color: #2e7d32;
+}
+
+.checkbox-checked::before {
+  content: "✓";
+}
+
+.checkbox-unchecked {
+  background-color: #f5f5f5;
+  border-color: #bdbdbd;
+}
+
+/* Checkboxes em listas */
+#preview li:has(.checkbox-markdown) {
+  list-style: none;
+  position: relative;
+}
+
+#preview li:has(.checkbox-markdown)::marker {
+  content: none;
+}
+
+p:has(.checkbox-markdown) {
+  line-height: 1.8;
+  margin: 12px 0;
+}
